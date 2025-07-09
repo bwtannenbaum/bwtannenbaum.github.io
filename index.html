@@ -3,29 +3,52 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ben Tannenbaum | Mechanical Engineering Portfolio" />
   <title>Ben Tannenbaum | ME Portfolio</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>Ben Tannenbaum</h1>
-    <nav>
+  <header class="navbar">
+    <div class="nav-title">Ben Tannenbaum</div>
+    <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+    <nav class="nav-links" id="navMenu">
       <a href="index.html">Home</a>
-      <a href="projects.html">Projects</a>
+      <a href="project1.html">Project 1</a>
+      <a href="project2.html">Project 2</a>
       <a href="resume.html">Resume</a>
-      <a href="mailto:youremail@example.com">Contact</a>
+      <a href="contact.html">Contact</a>
     </nav>
   </header>
 
-  <main>
-    <section class="intro">
-      <h2>About Me</h2>
-      <p>I’m a mechanical engineer with experience in CAD design, prototyping, and mechatronics. I love building functional hardware and solving practical problems.</p>
-    </section>
+  <main class="hero">
+    <h1>Hi, I'm Ben Tannenbaum</h1>
+    <p>Mechanical engineer passionate about CAD, prototyping, and mechatronics.</p>
   </main>
+
+  <section class="project-gallery">
+    <a href="project1.html" class="project-card">
+      <img src="assets/images/project1.jpg" alt="Project 1" />
+      <div class="project-title">Project 1</div>
+    </a>
+    <a href="project2.html" class="project-card">
+      <img src="assets/images/project2.jpg" alt="Project 2" />
+      <div class="project-title">Project 2</div>
+    </a>
+    <a href="project3.html" class="project-card">
+      <img src="assets/images/project3.jpg" alt="Project 3" />
+      <div class="project-title">Project 3</div>
+    </a>
+  </section>
 
   <footer>
     <p>&copy; 2025 Ben Tannenbaum</p>
   </footer>
+
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById("navMenu");
+      nav.classList.toggle("active");
+    }
+  </script>
 </body>
 </html>
