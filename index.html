@@ -71,7 +71,7 @@
 			<div class="fh5co-top-menu menu-1 text-center">
 				<ul>
 					<li><a href="work.html">Projects</a></li>
-					<li><a href="about.html">About Me</a></li>
+					<li><a href="about.html">About</a></li>
 					<!--<li class="has-dropdown">
 						<a href="#">Dropdown</a>
 						<ul class="dropdown">
@@ -86,8 +86,18 @@
 			</div>
 			<div class="fh5co-top-social menu-1 text-right">
 				<ul class="fh5co-social">
-					<li><a href="#"><i class="icon-linkedin"></i></a></li>
-					<li><a href="#"><i class="icon-mail"></i></a></li>
+					<li><a href="https://www.linkedin.com/in/ben-tannenbaum" target="_blank" rel="noopener noreferrer"><i class="icon-linkedin"></i></a></li>
+					<li style="position: relative;">
+						<a href="#" id="copyEmailLink" onclick="copyEmail(event)">
+							<i class="icon-mail"></i>
+						</a>
+						
+						<div id="toastNotification" class="toast-hidden">
+							Email copied to clipboard! 📋
+						</div>
+					</li>
+
+					<input type="hidden" id="myEmail" value="bwtannenbaum77@gmail.com">
 				</ul>
 			</div>
 		</div>

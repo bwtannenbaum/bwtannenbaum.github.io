@@ -194,5 +194,30 @@
 		loaderPage();
 	});
 
-
 }());
+
+function copyEmail(event) {
+    event.preventDefault();
+
+    const emailText = document.getElementById('myEmail').value;
+    const notification = document.getElementById('toastNotification');
+
+    navigator.clipboard.writeText(emailText).then(() => {
+        notification.classList.remove('toast-hidden', 'animate__fadeOut');
+        notification.classList.add('toast-visible', 'animate__animated', 'animate__fadeInUp');
+
+        setTimeout(() => {
+            notification.classList.remove('animate__fadeInUp');
+            notification.classList.add('animate__fadeOut');
+            
+            notification.addEventListener('animationend', () => {
+                notification.classList.remove('toast-visible', 'animate__animated', 'animate__fadeOut');
+                notification.classList.add('toast-hidden');
+            }, { once: true });
+
+        }, 3000); 
+
+    }).catch(err => {
+        console.error('Error copying email to clipboard: ', err);
+    });
+}
