@@ -354,7 +354,7 @@ h1, h2, h3, h4, h5, h6, figure {
   left: 0;
   top: .05em;
   font-family: 'icomoon';
-  speak: none;
+  /*speak: none; */
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
