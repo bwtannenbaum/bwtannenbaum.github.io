@@ -21,7 +21,7 @@ body {
 
 #page {
   position: relative;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   width: 100%;
   height: 100%;
   padding-top: 6em !important;
@@ -30,7 +30,7 @@ body {
   transition: 0.5s;
 }
 .offcanvas #page {
-  overflow: hidden;
+  /* overflow: hidden; */
   position: absolute;
 }
 .offcanvas #page:after {
@@ -743,7 +743,7 @@ h1, h2, h3, h4, h5, h6, figure {
   top: 0;
   bottom: 0;
   padding: 45px 40px 40px 40px;
-  overflow-y: auto;
+  /* overflow-y: auto; */
   display: none;
   -moz-transform: translateX(270px);
   -webkit-transform: translateX(270px);

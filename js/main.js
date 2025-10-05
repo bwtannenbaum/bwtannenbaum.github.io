@@ -197,12 +197,22 @@
 }());
 
 function copyEmail(event) {
+    console.log("1. copyEmail function started."); // Log #1
     event.preventDefault();
 
     const emailText = document.getElementById('myEmail').value;
     const notification = document.getElementById('toastNotification');
 
+    // This new check will tell us if the element was found
+    if (!notification) {
+        console.error("ERROR: Could not find the element with id 'toastNotification'!"); // Log #2
+        return; // Stop the function here if the element is missing
+    }
+
     navigator.clipboard.writeText(emailText).then(() => {
+        // This block only runs if the copy is successful
+        console.log("2. SUCCESS: Text copied. Running notification animation."); // Log #3
+        
         notification.classList.remove('toast-hidden', 'animate__fadeOut');
         notification.classList.add('toast-visible', 'animate__animated', 'animate__fadeInUp');
 
@@ -218,6 +228,7 @@ function copyEmail(event) {
         }, 3000); 
 
     }).catch(err => {
-        console.error('Error copying email to clipboard: ', err);
+        // This block only runs if the copy fails
+        console.error("2. FAILED: Could not copy text. Error:", err); // Log #4
     });
 }
