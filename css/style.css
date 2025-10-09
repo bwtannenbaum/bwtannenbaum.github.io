@@ -1295,16 +1295,13 @@ blockquote .person cite {
   margin: 0 0 5px 0;
 }
 
-/* --- NEW Clipboard Toast Notification --- */
+/* --- Clipboard Toast Notification --- */
 #clipboard-toast {
-    /* Positioning */
-    position: fixed; /* Fixed relative to the entire screen */
+    position: fixed;
     bottom: 20px;
     left: 50%;
-    transform: translate(-50%, 100px); /* Start off-screen */
+    transform: translate(-50%, 100px);
     z-index: 9999;
-    
-    /* Appearance */
     background-color: #333;
     color: #fff;
     padding: 12px 24px;
@@ -1312,16 +1309,13 @@ blockquote .person cite {
     font-family: "Montserrat", Arial, sans-serif;
     font-size: 15px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    
-    /* Animation */
     opacity: 0;
     visibility: hidden;
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Smooth pop-up and fade */
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* Class added by JavaScript to show the toast */
 #clipboard-toast.visible {
     opacity: 1;
     visibility: visible;
-    transform: translate(-50%, 0); /* Move to final position on-screen */
+    transform: translate(-50%, 0);
 }
