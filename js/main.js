@@ -193,43 +193,41 @@
 		goToTop();
 		loaderPage();
 
-	    // Make sure jQuery is loaded and DOM is ready
-		$(document).ready(function() {
-			$('#copy-email-button').on('click', function(event) {
-				event.preventDefault();
+		// Email copy functionality - NO nested $(document).ready()!
+		$('#copy-email-button').on('click', function(event) {
+			event.preventDefault();
+			
+			const emailText = $('#myEmail').val();
+			
+			// Check if clipboard API is available
+			if (!navigator.clipboard) {
+				alert('Clipboard not supported. Email: ' + emailText);
+				return;
+			}
+			
+			navigator.clipboard.writeText(emailText).then(function() {
+				// Remove any existing toast
+				$('#clipboard-toast').remove();
 				
-				const emailText = $('#myEmail').val();
+				// Create and add new toast
+				$('body').append('<div id="clipboard-toast">Email copied to clipboard! 📋</div>');
 				
-				// Check if clipboard API is available
-				if (!navigator.clipboard) {
-					alert('Clipboard not supported. Email: ' + emailText);
-					return;
-				}
+				// Show toast
+				setTimeout(function() {
+					$('#clipboard-toast').addClass('visible');
+				}, 100);
 				
-				navigator.clipboard.writeText(emailText).then(function() {
-					// Remove any existing toast
-					$('#clipboard-toast').remove();
-					
-					// Create and add new toast
-					$('body').append('<div id="clipboard-toast">Email copied to clipboard! 📋</div>');
-					
-					// Show toast
+				// Hide and remove toast
+				setTimeout(function() {
+					$('#clipboard-toast').removeClass('visible');
 					setTimeout(function() {
-						$('#clipboard-toast').addClass('visible');
-					}, 100);
-					
-					// Hide and remove toast
-					setTimeout(function() {
-						$('#clipboard-toast').removeClass('visible');
-						setTimeout(function() {
-							$('#clipboard-toast').remove();
-						}, 500);
-					}, 3000);
-					
-				}).catch(function(err) {
-					console.error('Copy failed:', err);
-					alert('Failed to copy email. Please try again.');
-				});
+						$('#clipboard-toast').remove();
+					}, 500);
+				}, 3000);
+				
+			}).catch(function(err) {
+				console.error('Copy failed:', err);
+				alert('Failed to copy email. Please try again.');
 			});
 		});
 	});
