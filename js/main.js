@@ -192,43 +192,46 @@
 		dropdown();
 		goToTop();
 		loaderPage();
+
+	    // Make sure jQuery is loaded and DOM is ready
+		$(document).ready(function() {
+			$('#copy-email-button').on('click', function(event) {
+				event.preventDefault();
+				
+				const emailText = $('#myEmail').val();
+				
+				// Check if clipboard API is available
+				if (!navigator.clipboard) {
+					alert('Clipboard not supported. Email: ' + emailText);
+					return;
+				}
+				
+				navigator.clipboard.writeText(emailText).then(function() {
+					// Remove any existing toast
+					$('#clipboard-toast').remove();
+					
+					// Create and add new toast
+					$('body').append('<div id="clipboard-toast">Email copied to clipboard! 📋</div>');
+					
+					// Show toast
+					setTimeout(function() {
+						$('#clipboard-toast').addClass('visible');
+					}, 100);
+					
+					// Hide and remove toast
+					setTimeout(function() {
+						$('#clipboard-toast').removeClass('visible');
+						setTimeout(function() {
+							$('#clipboard-toast').remove();
+						}, 500);
+					}, 3000);
+					
+				}).catch(function(err) {
+					console.error('Copy failed:', err);
+					alert('Failed to copy email. Please try again.');
+				});
+			});
+		});
 	});
 
 }());
-
-function copyEmail(event) {
-    console.log("1. copyEmail function started."); // Log #1
-    event.preventDefault();
-
-    const emailText = document.getElementById('myEmail').value;
-    const notification = document.getElementById('toastNotification');
-
-    // This new check will tell us if the element was found
-    if (!notification) {
-        console.error("ERROR: Could not find the element with id 'toastNotification'!"); // Log #2
-        return; // Stop the function here if the element is missing
-    }
-
-    navigator.clipboard.writeText(emailText).then(() => {
-        // This block only runs if the copy is successful
-        console.log("2. SUCCESS: Text copied. Running notification animation."); // Log #3
-        
-        notification.classList.remove('toast-hidden', 'animate__fadeOut');
-        notification.classList.add('toast-visible', 'animate__animated', 'animate__fadeInUp');
-
-        setTimeout(() => {
-            notification.classList.remove('animate__fadeInUp');
-            notification.classList.add('animate__fadeOut');
-            
-            notification.addEventListener('animationend', () => {
-                notification.classList.remove('toast-visible', 'animate__animated', 'animate__fadeOut');
-                notification.classList.add('toast-hidden');
-            }, { once: true });
-
-        }, 3000); 
-
-    }).catch(err => {
-        // This block only runs if the copy fails
-        console.error("2. FAILED: Could not copy text. Error:", err); // Log #4
-    });
-}

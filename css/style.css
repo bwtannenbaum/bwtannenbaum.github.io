@@ -1295,53 +1295,33 @@ blockquote .person cite {
   margin: 0 0 5px 0;
 }
 
-/* Style for the notification toast */
-#toastNotification {
-    /* Start hidden */
-    visibility: hidden;
-    opacity: 0;
-    
+/* --- NEW Clipboard Toast Notification --- */
+#clipboard-toast {
     /* Positioning */
-    position: absolute; /* Position relative to the parent <li> */
-    bottom: 125%;      /* Place it just above the icon */
+    position: fixed; /* Fixed relative to the entire screen */
+    bottom: 20px;
     left: 50%;
-    transform: translateX(-50%); /* Center it perfectly */
-    z-index: 10;
+    transform: translate(-50%, 100px); /* Start off-screen */
+    z-index: 9999;
     
     /* Appearance */
-    background-color: #333; /* Dark background */
-    color: #fff;             /* White text */
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-size: 14px;
-    white-space: nowrap;    /* Prevent the text from wrapping to a new line */
+    background-color: #333;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-family: "Montserrat", Arial, sans-serif;
+    font-size: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     
-    /* Smooth fade-in/out transition */
-    transition: opacity 0.5s ease;
-}
-
-/* A little triangle pointing down to the icon */
-#toastNotification::after {
-    content: "";
-    position: absolute;
-    top: 100%; /* Position at the bottom of the toast */
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #333 transparent transparent transparent;
-}
-
-/* Utility class to make the toast visible */
-.toast-visible {
-    visibility: visible;
-    opacity: 1;
-}
-
-/* Keep the toast hidden */
-.toast-hidden {
-    visibility: hidden;
+    /* Animation */
     opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Smooth pop-up and fade */
 }
 
-/*# sourceMappingURL=style.css.map */
+/* Class added by JavaScript to show the toast */
+#clipboard-toast.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0); /* Move to final position on-screen */
+}
