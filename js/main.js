@@ -169,7 +169,7 @@
 	
 	};
 
-
+	/*
 	// Loading page
 	var loaderPage = function() {
 		$(".fh5co-loader").fadeOut("slow");
@@ -182,8 +182,8 @@
 	    },
 		});
 	};
+	*/
 
-	
 	$(function(){
 		mobileMenuOutsideClick();
 		offcanvasMenu();
@@ -191,38 +191,65 @@
 		contentWayPoint();
 		dropdown();
 		goToTop();
-		loaderPage();
+		// loaderPage();
 
-		// Email copy functionality
-		$('#copy-email-button').on('click', function(event) {
+		// Email copy functionality with positioned toast
+		$('body').on('click', '#copy-email-button', function(event) {
 			event.preventDefault();
+			event.stopPropagation();
+			event.stopImmediatePropagation();
 			
+			const $button = $(this);
 			const emailText = $('#myEmail').val();
 			
 			if (!navigator.clipboard) {
 				alert('Clipboard not supported. Email: ' + emailText);
-				return;
+				return false;
 			}
 			
 			navigator.clipboard.writeText(emailText).then(function() {
+				// Remove any existing toast
 				$('#clipboard-toast').remove();
-				$('body').append('<div id="clipboard-toast">Email copied to clipboard! 📋</div>');
 				
-				setTimeout(function() {
-					$('#clipboard-toast').addClass('visible');
-				}, 100);
+				// Create new toast
+				$('body').append('<div id="clipboard-toast">Email Copied!</div>');
 				
+				const $toast = $('#clipboard-toast');
+				
+				// Get button position relative to viewport (not document)
+				const buttonRect = $button[0].getBoundingClientRect();
+				const buttonWidth = buttonRect.width;
+				const buttonHeight = buttonRect.height;
+				const toastWidth = $toast.outerWidth();
+				
+				// Position toast below button, centered (relative to viewport since toast is fixed)
+				const toastLeft = buttonRect.left + (buttonWidth / 2) - (toastWidth / 2);
+				const toastTop = buttonRect.top + buttonHeight - 10; // 15px gap below button
+				
+				$toast.css({
+					left: toastLeft + 'px',
+					top: toastTop + 'px'
+				});
+				
+				// Show toast
 				setTimeout(function() {
-					$('#clipboard-toast').removeClass('visible');
+					$toast.addClass('visible');
+				}, 50);
+				
+				// Hide and remove toast
+				setTimeout(function() {
+					$toast.removeClass('visible');
 					setTimeout(function() {
-						$('#clipboard-toast').remove();
-					}, 500);
-				}, 3000);
+						$toast.remove();
+					}, 300);
+				}, 2500);
 				
 			}).catch(function(err) {
 				console.error('Copy failed:', err);
 				alert('Failed to copy email.');
 			});
+			
+			return false;
 		});
 	});
 
