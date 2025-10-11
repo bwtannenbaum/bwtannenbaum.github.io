@@ -749,7 +749,7 @@ h1, h2, h3, h4, h5, h6, figure {
   line-height: 24px;
 }
 .work .work-grid .inner .desc h3 a {
-  color: var(--text-primary);
+  color: var(--text-light);
 }
 .work .work-grid .inner .desc .cat {
   font-size: 11px;
@@ -767,12 +767,29 @@ h1, h2, h3, h4, h5, h6, figure {
 .work:hover .desc h3 a, .work:focus .desc h3 a {
   color: var(--primary-color);
 }
+.work:hover .desc h3,
+.work:focus .desc h3 {
+  color: var(--background-white) !important;
+}
+
+.work:hover .desc .cat,
+.work:focus .desc .cat {
+  color: var(--text-light) !important;
+}
+
+.work:hover .desc h2,
+.work:focus .desc h2 {
+  color: var(--text-primary) !important;
+}
 
 .top-line {
   padding-bottom: 7em;
 }
 .top-line .fh5co-heading {
   margin-bottom: 0 !important;
+}
+.top-line-compact {
+  padding-bottom: 2em !important;
 }
 
 .categories {
@@ -915,7 +932,7 @@ h1, h2, h3, h4, h5, h6, figure {
   -moz-border-radius: 50px;
   -ms-border-radius: 50px;
   border-radius: 50px;
-  background: #cabcab !important;
+  background: var(--text-secondary) !important;
 }
 
 #fh5co-started {
@@ -934,17 +951,19 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 #fh5co-started .btn {
   margin-top: 20px;
-  border: 3px solid var(--primary-accent);
-  color: var(--primary-accent);
-  font-size: 20px;
-  font-weight: 400;
+  border: 3px solid var(--primary-text);
+  color: var(--primary-text);
+  font-size: 24px;
+  font-weight: 550;  /* Changed from 400 to 700 */
   padding: 20px 0;
   padding-left: 70px;
   padding-right: 70px;
+  letter-spacing: 2px;  /* Added for better spacing */
+  text-transform: uppercase;  /* Added to match heading style */
 }
 #fh5co-started .btn:hover {
   background: var(--primary-accent) !important;
-  border: 3px solid var(--primary-accent) !important;
+  border: 3px solid var(--background-white) !important;
   color: #fff;
 }
 
@@ -1170,7 +1189,7 @@ h1, h2, h3, h4, h5, h6, figure {
   width: 50px;
   height: 50px;
   display: table;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--primary-color);
   color: #fff;
   text-align: center;
   -webkit-border-radius: 4px;
