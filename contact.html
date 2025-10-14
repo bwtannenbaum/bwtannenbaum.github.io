@@ -108,52 +108,62 @@
 	
 	<div id="fh5co-contact">
 		<div class="container">
-			<div class="row top-line animate-box">
-				<div class="col-md-6 col-md-offset-1 col-md-push-1 text-left fh5co-heading">
-					<h2>Say Hello</h2>
-					<p>I'm always interested in new opportunities; if you're looking for a driven engineer who enjoys solving design challenges from concept to prototype, I'd love to connect!</p>
-				</div>
-			</div>
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2">
-					<div class="col-md-5 col-md-pull-1 animate-box">
-						<div class="fh5co-contact-info">
-							<h3>Contact Information</h3>
-							<ul>
-								<li class="phone"><a href="tel://1234567920">+ 1 978-429-6095</a></li>
-								<li class="email"><a href="mailto:info@yoursite.com">ben@tannenbaum.work</a></li>
-							</ul>
+					<!-- Say Hello Section -->
+					<div class="row top-line top-line-compact animate-box">
+						<div class="col-md-12 text-left fh5co-heading">
+							<h2>Say Hello</h2>
+							<p>I'm always interested in new opportunities; if you're looking for a driven engineer who enjoys solving design challenges from concept to prototype, I'd love to connect!</p>
 						</div>
 					</div>
-					<div class="col-md-7 animate-box">
-						<h3>Get In Touch</h3>
-						<form action="#">
-							<div class="row form-group">
-								<div class="col-md-12">
-									<label for="fname">Your Name</label>
-									<input type="text" id="fname" class="form-control">
+					
+					<!-- Contact Form and Info -->
+					<div class="row">
+						<div class="col-md-5 animate-box">
+							<div class="fh5co-contact-info">
+								<h3>Contact Information</h3>
+								<ul>
+									<li class="phone"><a href="tel://19784296095">+ 1 978-429-6095</a></li>
+									<li class="email"><a href="mailto:ben@tannenbaum.work">ben@tannenbaum.work</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-7 animate-box">
+							<h3>Get In Touch</h3>
+							<form action="https://formspree.io/f/xovkpppd" method="POST">
+								<div class="row form-group">
+									<div class="col-md-12">
+										<label for="fname">Your Name</label>
+										<input type="text" id="fname" name="name" class="form-control" required>
+									</div>
+								</div>
+
+								<div class="row form-group">
+									<div class="col-md-12">
+										<label for="email">Email</label>
+										<input type="email" id="email" name="email" class="form-control" required>
+									</div>
+								</div>
+
+								<div class="row form-group">
+									<div class="col-md-12">
+										<label for="message">Message</label>
+										<textarea name="message" id="message" cols="30" rows="10" class="form-control" required></textarea>
+									</div>
 								</div>
 								
-							</div>
-
-							<div class="row form-group">
-								<div class="col-md-12">
-									<label for="email">Email</label>
-									<input type="text" id="email" class="form-control">
+								<!-- Hidden field to customize subject line -->
+								<input type="hidden" name="_subject" value="New contact from Portfolio!">
+								
+								<!-- Formspree will redirect here after submission -->
+								<input type="hidden" name="_next" value="https://ben.tannenbaum.work/contact.html">
+								
+								<div class="form-group">
+									<input type="submit" value="Send Message" class="btn btn-primary">
 								</div>
-							</div>
-
-							<div class="row form-group">
-								<div class="col-md-12">
-									<label for="message">Message</label>
-									<textarea name="message" id="message" cols="30" rows="10" class="form-control"></textarea>
-								</div>
-							</div>
-							<div class="form-group">
-								<input type="submit" value="Send Message" class="btn btn-primary">
-							</div>
-
-						</form>		
+							</form>		
+						</div>
 					</div>
 				</div>
 			</div>
