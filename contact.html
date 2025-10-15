@@ -130,40 +130,69 @@
 							</div>
 						</div>
 						<div class="col-md-7 animate-box">
-							<h3>Get In Touch</h3>
-							<form action="https://formspree.io/f/xovkpppd" method="POST">
-								<div class="row form-group">
-									<div class="col-md-12">
-										<label for="fname">Your Name</label>
-										<input type="text" id="fname" name="name" class="form-control" required>
-									</div>
+						<h3>Get In Touch</h3>
+						
+						<!-- Success Message (hidden by default) -->
+						<div id="form-success" style="display: none; padding: 15px 20px; background: rgba(102, 187, 106, 0.1); border-left: 4px solid #66BB6A; border-radius: 4px; margin-bottom: 20px;">
+							<div style="display: flex; align-items: center; gap: 12px;">
+								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#66BB6A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+									<polyline points="20 6 9 17 4 12"></polyline>
+								</svg>
+								<div>
+									<h4 style="color: #66BB6A; margin: 0 0 5px 0; font-size: 16px;">Message Sent Successfully!</h4>
+									<p style="margin: 0; font-size: 14px;">Thanks for reaching out! I'll get back to you within 24-48 hours.</p>
 								</div>
-
-								<div class="row form-group">
-									<div class="col-md-12">
-										<label for="email">Email</label>
-										<input type="email" id="email" name="email" class="form-control" required>
-									</div>
-								</div>
-
-								<div class="row form-group">
-									<div class="col-md-12">
-										<label for="message">Message</label>
-										<textarea name="message" id="message" cols="30" rows="10" class="form-control" required></textarea>
-									</div>
-								</div>
-								
-								<!-- Hidden field to customize subject line -->
-								<input type="hidden" name="_subject" value="New contact from Portfolio!">
-								
-								<!-- Formspree will redirect here after submission -->
-								<input type="hidden" name="_next" value="https://ben.tannenbaum.work/contact.html">
-								
-								<div class="form-group">
-									<input type="submit" value="Send Message" class="btn btn-primary">
-								</div>
-							</form>		
+							</div>
 						</div>
+						
+						<!-- Error Message (hidden by default) -->
+						<div id="form-error" style="display: none; padding: 15px 20px; background: rgba(239, 83, 80, 0.1); border-left: 4px solid #EF5350; border-radius: 4px; margin-bottom: 20px;">
+							<div style="display: flex; align-items: center; gap: 12px;">
+								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#EF5350" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+									<circle cx="12" cy="12" r="10"></circle>
+									<line x1="15" y1="9" x2="9" y2="15"></line>
+									<line x1="9" y1="9" x2="15" y2="15"></line>
+								</svg>
+								<div>
+									<h4 style="color: #EF5350; margin: 0 0 5px 0; font-size: 16px;">Something Went Wrong</h4>
+									<p style="margin: 0; font-size: 14px;">Please try again or email me directly at <a href="mailto:ben@tannenbaum.work" style="color: #EF5350; text-decoration: underline;">ben@tannenbaum.work</a></p>
+								</div>
+							</div>
+						</div>
+						
+						<form id="contact-form" action="https://formspree.io/f/xovkpppd" method="POST">
+							<div class="row form-group">
+								<div class="col-md-12">
+									<label for="fname">Your Name</label>
+									<input type="text" id="fname" name="name" class="form-control" required>
+								</div>
+							</div>
+
+							<div class="row form-group">
+								<div class="col-md-12">
+									<label for="email">Email</label>
+									<input type="email" id="email" name="email" class="form-control" required>
+								</div>
+							</div>
+
+							<div class="row form-group">
+								<div class="col-md-12">
+									<label for="message">Message</label>
+									<textarea name="message" id="message" cols="30" rows="10" class="form-control" required></textarea>
+								</div>
+							</div>
+							
+							<!-- Hidden fields -->
+							<input type="hidden" name="_subject" value="New contact from Portfolio!">
+							
+							<div class="form-group">
+								<button type="submit" id="submit-btn" class="btn btn-primary">
+									<span id="btn-text">Send Message</span>
+									<span id="btn-spinner" style="display: none;">Sending...</span>
+								</button>
+							</div>
+						</form>		
+					</div>
 					</div>
 				</div>
 			</div>
@@ -199,6 +228,71 @@
 	<script src="js/jquery.waypoints.min.js"></script>
 	<!-- Main -->
 	<script src="js/main.js"></script>
+
+	<script>
+	$(document).ready(function() {
+		$('#contact-form').on('submit', function(e) {
+			e.preventDefault(); // Prevent default form submission
+			
+			var form = $(this);
+			var formData = form.serialize();
+			var submitBtn = $('#submit-btn');
+			var btnText = $('#btn-text');
+			var btnSpinner = $('#btn-spinner');
+			
+			// Disable button and show loading state
+			submitBtn.prop('disabled', true);
+			btnText.hide();
+			btnSpinner.show();
+			
+			// Hide any previous messages
+			$('#form-success').hide();
+			$('#form-error').hide();
+			
+			// Submit form via AJAX
+			$.ajax({
+				url: form.attr('action'),
+				method: 'POST',
+				data: formData,
+				dataType: 'json',
+				headers: {
+					'Accept': 'application/json'
+				},
+				success: function(response) {
+					// Show success message
+					$('#form-success').slideDown();
+					
+					// Clear form
+					form[0].reset();
+					
+					// Scroll to top of "Get In Touch" section
+					$('html, body').animate({
+						scrollTop: $('.col-md-7.animate-box').offset().top - 150
+					}, 500);
+					
+					// Re-enable button
+					submitBtn.prop('disabled', false);
+					btnText.show();
+					btnSpinner.hide();
+				},
+				error: function(error) {
+					// Show error message
+					$('#form-error').slideDown();
+					
+					// Scroll to top of "Get In Touch" section
+					$('html, body').animate({
+						scrollTop: $('.col-md-7.animate-box').offset().top - 150
+					}, 500);
+					
+					// Re-enable button
+					submitBtn.prop('disabled', false);
+					btnText.show();
+					btnSpinner.hide();
+				}
+			});
+		});
+	});
+	</script>
 
 	</body>
 </html>

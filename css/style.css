@@ -724,7 +724,7 @@ h1, h2, h3, h4, h5, h6, figure {
   height: 300px;
   width: 100.1%;
   opacity: 0;
-  background: rgba(237, 235, 232, 0.9);
+  background: rgba(150, 150, 150, 0.9);
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
