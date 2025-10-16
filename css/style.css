@@ -705,9 +705,11 @@ h1, h2, h3, h4, h5, h6, figure {
   }
 }
 
+/* Updated project hover styles */
 .work {
   margin-bottom: 40px;
 }
+
 .work .work-grid {
   background-size: cover;
   background-position: center center;
@@ -719,67 +721,111 @@ h1, h2, h3, h4, h5, h6, figure {
   -o-transition: 0.3s;
   transition: 0.3s;
 }
+
 .work .work-grid .inner {
   display: table;
   height: 300px;
   width: 100.1%;
-  opacity: 0;
-  background: rgba(150, 150, 150, 0.9);
+  background: rgba(30, 30, 30, 0.5);
+  opacity: 1;
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
 }
+
 @media screen and (max-width: 768px) {
   .work .work-grid .inner {
-    opacity: 1;
-    background: rgba(237, 235, 232, 0.7);
+    background: rgba(30, 30, 30, 0.8);
   }
 }
+
 .work .work-grid .inner .desc {
   display: table-cell;
   vertical-align: middle;
   padding: 40px;
-}
-.work .work-grid .inner .desc h3 {
-  font-size: 14px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin-bottom: 5px;
-  font-weight: bold;
-  line-height: 24px;
-}
-.work .work-grid .inner .desc h3 a {
-  color: var(--text-light);
-}
-.work .work-grid .inner .desc .cat {
-  font-size: 11px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-@media screen and (max-width: 768px) {
-  .work .work-grid .inner .desc .cat {
-    color: #333333;
-  }
-}
-.work:hover .inner, .work:focus .inner {
-  opacity: 1;
-}
-.work:hover .desc h3 a, .work:focus .desc h3 a {
-  color: var(--primary-color);
-}
-.work:hover .desc h3,
-.work:focus .desc h3 {
-  color: var(--background-white) !important;
+  text-align: center;
 }
 
-.work:hover .desc .cat,
-.work:focus .desc .cat {
-  color: var(--text-light) !important;
+.work .work-grid .inner .desc h3 {
+  font-size: 18px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 0;
+  font-weight: bold;
+  line-height: 1.4;
+  color: #E8E8E8;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px 15px;
+  display: inline-block;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.work .work-grid .inner .desc h3 a {
+  color: #E8E8E8;
+}
+
+.work .work-grid .inner .desc h2 {
+  font-size: 16px;
+  color: #E8E8E8;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 8px 15px;
+  display: inline-block;
+  margin-bottom: 0;
+  margin-top: 8px;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.work .work-grid .inner .desc .cat {
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: #B0B0B0;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 0;
+  display: block;
+  margin-top: 0;
+  line-height: 0;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  -webkit-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+/* Hover state */
+.work:hover .inner,
+.work:focus .inner {
+  background: rgba(30, 30, 30, 0.9);
+}
+
+.work:hover .desc h3,
+.work:focus .desc h3 {
+  background: rgba(0, 0, 0, 0.85);
+  color: var(--primary-color);
+}
+
+.work:hover .desc h3 a,
+.work:focus .desc h3 a {
+  color: var(--primary-color);
 }
 
 .work:hover .desc h2,
 .work:focus .desc h2 {
-  color: var(--text-primary) !important;
+  color: var(--primary-color);
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.work:hover .desc .cat,
+.work:focus .desc .cat {
+  padding: 8px 15px;
+  margin-top: 10px;
+  line-height: 1.4;
+  height: auto;
+  opacity: 1;
 }
 
 .top-line {
