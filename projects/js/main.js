@@ -212,7 +212,7 @@
 				$('#clipboard-toast').remove();
 				
 				// Create new toast
-				$('body').append('<div id="clipboard-toast">Email Copied</div>');
+				$('body').append('<div id="clipboard-toast">Email Copied!</div>');
 				
 				const $toast = $('#clipboard-toast');
 				
