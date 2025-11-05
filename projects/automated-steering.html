@@ -112,26 +112,46 @@
 				<div class="col-md-8 col-md-push-2 text-left fh5co-heading">
 					<h2>Automated Steering Control System</h2>
 					<div class="row animate-box project-image-skills">
-						<div class="col-md-6">
-							<img src="../images/project-5.jpg" class="img-responsive">
+						<div class="col-md-8">
+							<img src="../images/project-5.jpg" class="img-responsive" style="width: 100%; max-width: 100%;">
 						</div>
-						<div class="col-md-6">
+						<div class="col-md-4">
 							<div class="role">
 								<h3>Skills</h3>
 								<ul>
-									<li>SolidWorks CAD</li>
-									<li>Hand Calculations</li>
-									<li>Material Selection</li>
-									<li>Design Iteration</li>
-									<li>Testing</li>
+									<li>MATLAB / Simulink Modeling</li>
+									<li>PID and State-Space Control Design</li>
+									<li>System Response Tuning</li>
+									<li>Optimization</li>
+									<li>Analysis</li>
 								</ul>
 							</div>
 						</div>
 					</div>
-					<p>As part of my senior capstone project, I co-engineered a UAV-mounted claw system designed to remotely deploy and retrieve payloads from salt marsh environments. The goal was to streamline ecological data collection by allowing drones to safely place and recover audio recording units (ARUs) without manual intervention in difficult terrain.</p>
-					<p>I designed the protective payload housing and claw mechanism in SolidWorks, selecting PETG for its UV and saltwater resistance. Through hand calculations and design validation, I established requirements for torque, power draw, and battery capacity to ensure reliable operation within drone limits.</p>
-					<p>Functional and drop testing guided iterative improvements, leading to a design capable of safely securing payloads dropped from up to 8 feet and improving retrieval success rates by approximately 70% from heights above 5 feet. The final prototype met all mechanical load, torque, and current draw specifications and demonstrated strong proof-of-concept performance for future UAV integration.</p>
-					
+					<p>As part of my final project for Feedback Control Systems (University of Massachusetts Amherst), 
+						I developed and simulated an automated steering control system 
+						capable of performing lane change maneuvers and compensating 
+						for wind disturbances. The goal was to design a controller 
+						that maintained vehicle safety, passenger comfort, 
+						and disturbance rejection, ensuring minimal overshoot, 
+						low steering effort, and stable lateral positioning during the maneuver.</p>
+					<p>I designed and tuned multiple controllers using both input/output (I/O)
+						 and state-space approaches in MATLAB and Simulink. 
+						 Beginning with proportional and PD controllers, 
+						 I added a lead compensator to improve settling time 
+						 and overshoot performance. Using Simulink's PID and Control System Tuner,
+						  I optimized the controller to meet performance goals for rise time, 
+						  settling time, and disturbance rejection. 
+						  I then implemented a state-space controller 
+						  ith pole placement and integral action, 
+						  refining system dynamics by directly adjusting the A and B matrices 
+						  to satisfy all requirements.</p>
+					<p>Through iterative testing and comparison, both controllers met design specifications
+						 with acceptable settling times and stable responses under wind gust disturbances.
+						  The project demonstrated my ability to model dynamic systems, 
+						  design feedback controllers, and analyze tradeoffs between control effort, 
+						  system stability, and passenger comfort—skills directly applicable to autonomous systems and robotics applications.</p>
+
 				</div>
 			</div>
 			<div class="row">
