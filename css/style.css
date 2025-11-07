@@ -341,8 +341,9 @@ h1, h2, h3, h4, h5, h6, figure {
   left: 0;
   right: 0;
   padding: 25px 0;
-  z-index: 1;
-  background: var(--background-light);  /* ← USE VARIABLE */
+  z-index: 1001;  /* Increased z-index to ensure it stays on top */
+  background: var(--background-light);
+  width: 100%;
 }
 @media screen and (max-width: 768px) {
   .fh5co-nav {
@@ -1039,7 +1040,7 @@ h1, h2, h3, h4, h5, h6, figure {
 #fh5co-offcanvas {
   position: absolute;
   z-index: 1901;
-  width: 270px;
+  width: 200px;
   background: black;
   top: 0;
   right: 0;
@@ -1070,10 +1071,10 @@ h1, h2, h3, h4, h5, h6, figure {
   transform: translateX(0px);
 }
 #fh5co-offcanvas a {
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--text-secondary);
 }
 #fh5co-offcanvas a:hover {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-primary);
 }
 #fh5co-offcanvas .fh5co-social {
   margin-top: 20px;
@@ -1275,10 +1276,10 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 .fh5co-nav-toggle.fh5co-nav-white > i {
   color: #fff;
-  background: #000;
+  background: var(--text-primary);
 }
 .fh5co-nav-toggle.fh5co-nav-white > i::before, .fh5co-nav-toggle.fh5co-nav-white > i::after {
-  background: #000;
+  background: var(--text-primary);
 }
 
 .fh5co-nav-toggle i::before {
@@ -1302,7 +1303,7 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 
 .fh5co-nav-toggle.active i::before {
-  background: var(--background-white);
+  background: var(--primary-text);
   top: 0;
   -webkit-transform: rotateZ(45deg);
   -moz-transform: rotateZ(45deg);
@@ -1312,7 +1313,7 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 
 .fh5co-nav-toggle.active i::after {
-  background: var(--background-white);
+  background: var(--primary-text);
   bottom: 0;
   -webkit-transform: rotateZ(-45deg);
   -moz-transform: rotateZ(-45deg);
@@ -1668,4 +1669,45 @@ blockquote .person cite {
 /* Remove top margin from role section when next to image */
 .project-image-skills .role {
   margin-top: 0;
+}
+
+/* Prevent horizontal scrolling only when menu is closed */
+html:not(.offcanvas),
+body:not(.offcanvas) {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+#page {
+  max-width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    max-width: 100%;
+  }
+}
+
+/* Ensure hamburger menu stays fixed with navbar */
+.fh5co-nav-toggle {
+  position: fixed !important;
+  right: 15px;
+  top: 25px;
+  z-index: 2002;
+}
+
+@media screen and (max-width: 768px) {
+  .fh5co-nav-toggle {
+    display: block;
+    top: 20px;
+  }
+}
+
+/* Ensure offcanvas menu is always accessible */
+#fh5co-offcanvas {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2001;
 }
